@@ -15,12 +15,25 @@ npm install --save react-multiple-component-lp
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-multiple-component-lp'
+import {InputField , TextAreaField} from 'react-multiple-component-lp'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <InputField
+          label="Nombres"
+          wrapperClass="Holi"
+          type="text"
+          text="Modern React component module"
+          required
+        />
+        <TextAreaField
+          label="Apellidos"
+          wrapperClass="Holi"
+          type="text"
+          text="Modern React component module"
+          required
+        />
     )
   }
 }
