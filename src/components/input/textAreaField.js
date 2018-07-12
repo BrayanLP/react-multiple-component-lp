@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './style/default.css'
 import textarea from './style/textarea.css'
-const TextAreaFieldLp = ({
+const TextAreaField = ({
   label,
   placeholder,
   wrapperClass,
@@ -52,7 +52,7 @@ const TextAreaFieldLp = ({
   )
 }
 
-TextAreaFieldLp.propTypes = {
+TextAreaField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -68,4 +68,4 @@ TextAreaFieldLp.propTypes = {
   error: PropTypes.string
 }
 
-export default TextAreaFieldLp
+export default TextAreaField
