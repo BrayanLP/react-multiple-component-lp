@@ -9,11 +9,11 @@ const TextAreaField = ({
   labelClass,
   inputClass,
   errorClass,
-  error,
   required,
   autoComplete,
   disabled,
-  input
+  input,
+  meta: { touched, error, warning, valid, dirty }
 }) => {
   return (
     <div
@@ -31,23 +31,28 @@ const TextAreaField = ({
         className={
           inputClass
             ? [styles.formControlLp, inputClass].join(' ')
-            : styles.formControlLp
+            : [
+              styles.formControlLp,
+              dirty ? (valid ? styles.isValid : styles.isInvalid) : ''
+            ].join(' ')
         }
         placeholder={placeholder}
         autoComplete={autoComplete || 'off'}
         disabled={disabled ? 'true' : false}
       />
-      {required && (
-        <span
-          className={
-            errorClass
-              ? [styles.invalidFeedback, styles.hide, errorClass].join(' ')
-              : [styles.invalidFeedback, styles.hide].join(' ')
-          }
-        >
-          {error || 'required field'}
-        </span>
-      )}
+      {touched &&
+        ((error && (
+          <span
+            className={
+              errorClass
+                ? [styles.invalidFeedback, errorClass].join(' ')
+                : [styles.invalidFeedback].join(' ')
+            }
+          >
+            {error}
+          </span>
+        )) ||
+          (warning && <span>{warning}</span>))}
     </div>
   )
 }
@@ -64,6 +69,8 @@ TextAreaField.propTypes = {
   autoComplete: PropTypes.string,
   required: PropTypes.bool,
   disabled: PropTypes.bool,
+  meta: PropTypes.any,
+  touched: PropTypes.any,
   input: PropTypes.any,
   error: PropTypes.string
 }
